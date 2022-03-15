@@ -1,0 +1,15 @@
+[
+    {
+      "contents": "yeah, youre right",
+      "date_created": "2020-03-15",
+      "commenter_id": 1,
+      "post_id":1
+    },
+    {
+      "contents": "whatever!",
+      "date_created": "2020-03-15",
+      "commenter_id": 3,
+      "post_id":2        
+    }
+  ]
+  

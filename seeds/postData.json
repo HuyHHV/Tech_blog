@@ -1,0 +1,14 @@
+[
+  {
+    "title": "Why MVC is so important?",
+    "contents": "it makes your code less fragile, easier to understand and change and easier to unit test. All because it is separated into different parts",
+    "date_created": "2020-03-15",
+    "OP_id": 1
+  },
+  {
+    "title": "In an MVC pattern, what needs to be created first?",
+    "contents": "most of time it’s good to start with “MODEL” as its main base for application, when we design model it will create basic structure and provide pathway for other designs.",
+    "date_created": "2020-03-15",
+    "OP_id": 2
+  }
+]
