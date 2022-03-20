@@ -23,6 +23,7 @@
       </div>
     {{/each}}
     {{!-- comment input section --}}
+    {{#if logged_in}}
       <div class="row">
         <div class="d-flex flex-start w-100">
           <div class="form-outline w-100">
@@ -39,8 +40,10 @@
           <button type="button" class="btn btn-outline-primary btn-sm">Cancel</button>
         </div>     
       </div>
-    </div>
+    {{/if}}
+  </div>
 </div>
 
 {{/each}}
 
+<script src="./js/homepage.js"></script>
