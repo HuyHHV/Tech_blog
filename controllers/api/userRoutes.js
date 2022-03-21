@@ -1,6 +1,19 @@
 const router = require('express').Router();
-const { User } = require('../../models');
+const { User,Post } = require('../../models');
 
+router.get('/', async (req, res) => {
+  try {
+    // Find the logged in user based on the session ID
+    const userData = await User.findByPk(1, {
+      attributes: { exclude: ['password'] },
+      include: [{ model: Post }],
+    });
+    
+    res.status(200).json(userData);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 
 
