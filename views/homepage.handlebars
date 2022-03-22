@@ -6,6 +6,7 @@
   <div class="card-header text-white bg-info mb-3">
       <h2> {{post.title}}</h2>
       <small>Posted by {{post.user.username}} on {{post.date_created}}</small>
+      <button class="cmtBtn">Comment</button>
   </div>
   
   <div class="card-body">
@@ -13,7 +14,7 @@
   </div>
 
   {{!-- comments of post set in display-none --}}
-  <div class="d-none card-footer mb-4 bg-light border border-primary">
+  <div class="d-none comment-section card-footer mb-4 bg-light border border-primary">
 
     {{#each post.comments as |comment| }}
       <div class="row mb-4 border border-primary">
@@ -23,24 +24,27 @@
       </div>
     {{/each}}
     {{!-- comment input section --}}
-    {{#if logged_in}}
-      <div class="row">
+    {{#if ../logged_in}}
+      <form class="row" id="commentForm">
         <div class="d-flex flex-start w-100">
           <div class="form-outline w-100">
             <textarea
               class="form-control"
-              id="textAreaExample"
+              id="commentContent"
               rows="4"
               style="background: #fff;"
             ></textarea>
           </div>
         </div>
         <div class="float-end mt-2 pt-1">
-          <button type="button" class="btn btn-primary btn-sm">Post comment</button>
-          <button type="button" class="btn btn-outline-primary btn-sm">Cancel</button>
+          <button type="button" class="btn btn-primary btn-sm"  type="submit">Post comment</button>
         </div>     
+      </form>
+    {{else}}
+      <div class="row mb-4 border border-primary">
+        <strong><p class="card-text"><a href="/login">Log in</a>to comment to this post</p></strong>
       </div>
-    {{/if}}
+     {{/if}}
   </div>
 </div>
 

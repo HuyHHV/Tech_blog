@@ -12,13 +12,11 @@ const loginFormHandler = async (event) => {
       body: JSON.stringify({ username, password }),
       headers: { 'Content-Type': 'application/json' },
     });
-    console.log(response);
     if (response.ok) {
-      // If successful, redirect the browser to the profile page
-      console.log(response);
+      // If successful, redirect the browser to the dashboard page
       document.location.replace('/dashboard');
     } else {
-      alert(response.statusText);
+      alert('Incorrect user name or password, please try again');
     }
   }
 };
@@ -28,7 +26,9 @@ const signupFormHandler = async (event) => {
 
   const username = document.querySelector('#name-signup').value.trim();
   const password = document.querySelector('#password-signup').value.trim();
-
+  if (password <8) {
+    return alert("your password length must longer than 8 characters")
+  }
   if (username && password) {
     const response = await fetch('/api/users', {
       method: 'POST',
@@ -37,7 +37,7 @@ const signupFormHandler = async (event) => {
     });
 
     if (response.ok) {
-      document.location.replace('/');
+      document.location.replace('/dashboard');
     } else {
       alert(response.statusText);
     }
