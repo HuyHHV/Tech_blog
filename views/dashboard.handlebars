@@ -24,7 +24,7 @@
   </div>
 
   {{#if posts.length}}
-  <div class="col-md-6 project-list">
+  <div class="col-md-6 post_list">
     <h3>Your posts:</h3>
 
     {{#each posts as |post|}}
@@ -36,9 +36,13 @@
       <div class="col-md-4">
         <button class="btn btn-sm btn-danger" data-id="{{post.id}}">DELETE</button>
       </div>
-       <div class="col-md-4">
-        <button class="btn btn-sm btn-danger" data-id="{{post.id}}">UPDATE</button>
-      </div>
+       <form class="col-md-4 updatePost" data-id="{{post.id}}">
+        <label for="title">Update post title:</label>
+        <input class="form-input" type="text" id="newtitle" name="title" />
+        <label for="title">Update post content:</label>
+        <input class="form-input" type="text" id="newcontents" name="title" />
+        <button type="submit" class="btn btn-sm btn-danger" >UPDATE</button>
+      </form>
     </div>
     {{/each}}
   </div>
