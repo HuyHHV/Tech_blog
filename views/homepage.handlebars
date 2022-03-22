@@ -14,7 +14,7 @@
   </div>
 
   {{!-- comments of post set in display-none --}}
-  <div class="d-none comment-section card-footer mb-4 bg-light border border-primary">
+  <div class="d-none comment-section card-footer mb-4 bg-light border border-primary" data-id="{{post.id}}">
 
     {{#each post.comments as |comment| }}
       <div class="row mb-4 border border-primary">
@@ -25,7 +25,7 @@
     {{/each}}
     {{!-- comment input section --}}
     {{#if ../logged_in}}
-      <form class="row" id="commentForm">
+      <form class="row commentForm" >
         <div class="d-flex flex-start w-100">
           <div class="form-outline w-100">
             <textarea
@@ -37,7 +37,7 @@
           </div>
         </div>
         <div class="float-end mt-2 pt-1">
-          <button type="button" class="btn btn-primary btn-sm"  type="submit">Post comment</button>
+          <button  type="submit" class="btn btn-primary btn-sm" >Post comment</button>
         </div>     
       </form>
     {{else}}

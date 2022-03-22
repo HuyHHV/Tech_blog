@@ -1,7 +1,9 @@
 
-const comment = document.querySelector('.comment-section');
 
-const commentToggle = () => {
+const commentToggle = (event) => {
+  const clickedBtn = event.target;
+  const buttonContainer = clickedBtn.parentNode;
+  const comment = buttonContainer.parentNode.querySelector('.comment-section');
     if (comment.classList.contains('d-none')) {
         comment.classList.remove("d-none");
     }
@@ -9,20 +11,23 @@ const commentToggle = () => {
 }
 
 const commentHandler = async (event) => {
-      
+    event.preventDefault();
+    console.log(event.target)
     // Collect values from the login form
-    const comment = document.querySelector('#commentContent').value;
-      
-    if (comment) {
+    const contents = event.target.querySelector('#commentContent').value;
+    const post_id = event.target.parentNode.dataset.id;
+    console.log(JSON.stringify({contents,post_id}))
+    if (contents) {
       // Send a POST request to the API endpoint
       const response = await fetch('/api/comments', {
         method: 'POST',
-        body: JSON.stringify(comment),
+        body: JSON.stringify({contents,post_id}),
         headers: { 'Content-Type': 'application/json' },
       });
       
       if (response.ok) {
         // If successful, reload the page
+        contents.value = "";
         location.reload(); 
       } else {
         alert(response.statusText);
@@ -31,8 +36,14 @@ const commentHandler = async (event) => {
   };
 
 
-document.querySelector('.cmtBtn')
-        .addEventListener('click',commentToggle);
+const buttons = document.querySelectorAll('.cmtBtn')
 
-document.querySelector('#commentForm')
-        .addEventListener('click',commentHandler);
+buttons.forEach((currentBtn) => {
+  currentBtn.addEventListener('click', (event) => commentToggle(event))
+})
+
+const forms = document.querySelectorAll('.commentForm')
+
+forms.forEach((currentForm) => {
+  currentForm.addEventListener('submit', (event) => commentHandler(event))
+})
